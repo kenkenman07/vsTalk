@@ -1,13 +1,13 @@
 FROM node:20-slim
 
-WORKDIR ./
+WORKDIR /app
 
 COPY package*.json ./
 
 RUN npm install
 
-COPY ..
+COPY . .
 
 EXPOSE 8000
 
-CMD ["npm", "server.js"]
+CMD ["node", "server.js"]
