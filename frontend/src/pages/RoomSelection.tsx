@@ -1,8 +1,9 @@
 function RoomSelection() {
 
     return (
-        <>
-        </>
+        <div>
+            こんにちは
+        </div>
     )
 
 }

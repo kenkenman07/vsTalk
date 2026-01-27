@@ -10,11 +10,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Layout />} />
+        <Route path='/' element={<Layout />} >
           <Route index element={<Meeting />} />
-      </Routes>
+        </Route>
 
         <Route path='/selection' element={<RoomSelection />} />
+      </Routes>
 
     </BrowserRouter>
   )

@@ -3,14 +3,18 @@ const { Server } = require("socket.io");
 
 const server = http.createServer();
 
-const io = new Server(server);
+const io = new Server(server, {
+    cors: {
+        origin: "http://localhost:5173"
+    }
+});
 
 io.on("connection", (socket) => {
     console.log(socket.id);
 
     socket.on("message", (msg) => {
-
-        socket.emit("message", msg);
+        console.log(msg);
+        io.emit("message", msg);
     });
 
     socket.on("disconnect", () => {
@@ -18,6 +22,6 @@ io.on("connection", (socket) => {
     });
 });
 
-server.listen(8000, () => {
+server.listen(8000, "0.0.0.0", () => {
     console.log("server opened");
 });
