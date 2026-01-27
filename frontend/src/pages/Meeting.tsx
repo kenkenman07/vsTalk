@@ -69,7 +69,7 @@ function Meeting() {
                 </button>
             </div>
 
-            {message}
+            <div>Message: {message}</div>
             
             
         </div>        
