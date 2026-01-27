@@ -5,6 +5,7 @@ import useSocket from "../hooks/useSocket";
 function Meeting() {
     const [ socket ] = useSocket();
     const [reason, setReason] = useState("");
+    const [message, setMessage] = useState("");
 
     const stop = () => {
         socket.emit("message", reason);
@@ -13,6 +14,7 @@ function Meeting() {
     useEffect(() => {
         socket.on("message", (msg) => {
             console.log(msg);
+            setMessage(msg);
         })
 
     }, []);
@@ -66,6 +68,8 @@ function Meeting() {
                     ボタン
                 </button>
             </div>
+
+            {message}
             
             
         </div>        
