@@ -69,6 +69,12 @@ vsTalk は、
 
 話題からの脱線
 
+
+
+https://github.com/user-attachments/assets/19504d6e-ce57-4310-b81e-20a50bb4d898
+
+
+
 vsTalk は、会議を **「我慢の場」** ではなく、ルールのあるゲームのような体験に変えることを目指しています。
 
 ## 開発技術
