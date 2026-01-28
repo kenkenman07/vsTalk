@@ -35,9 +35,14 @@ function Meeting() {
         <div>
             {message && <ResultModal message={message} onClose={reload}/>}
                 
-            <div className="fixed inset-0 flex flex-col items-center justify-center">
+            <div className="fixed inset-0 flex flex-col items-center justify-center bg-no-repeat bg-cover"
+                    style={{backgroundImage: "url(/images/vsTalk_bg.png)"}}        
+            >
 
                 {!message && <Timer />}
+
+                <div className="font-bold border p-6 bg-white/70 flex flex-col items-center shadow rounded-lg">
+                <div className="mb-3 text-2xl">中断の理由を選んでください</div>
 
                 <div>
                     <input 
@@ -100,14 +105,15 @@ function Meeting() {
                         話が長すぎます
                     </label>
                 </div>
+                </div>
                 
                 <div>
                     <button
                         disabled={!reason}
                         onClick={stop}
-                        className="w-24 h-24 rounded-full font-bold bg-red-600 hover:bg-red-700"
+                        className="mt-4 w-50 h-50 rounded-full font-bold bg-linear-to-b shadow-[0_8px_20px_rgba(0,0,0,0.6)] from-red-400 via-red-600 to-red-800 text-6xl"
                         >
-                        ボタン
+                        STOP!
                     </button>
                 </div>
 

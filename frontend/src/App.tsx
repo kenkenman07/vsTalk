@@ -1,8 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from './Layout'
 import Meeting from './pages/Meeting'
-import RoomSelection from './pages/RoomSelection'
-
 
 function App() {
   
@@ -13,7 +11,6 @@ function App() {
           <Route index element={<Meeting />} />
         </Route>
 
-        <Route path='/selection' element={<RoomSelection />} />
       </Routes>
 
     </BrowserRouter>
