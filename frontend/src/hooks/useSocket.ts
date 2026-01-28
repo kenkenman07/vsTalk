@@ -3,9 +3,11 @@ import { useEffect, useRef } from "react";
 
 function useSocket() {
     const socketRef = useRef<Socket | null>(null);
+
+    const url = import.meta.env.VITE_SERVER_URL;
     
     if(!socketRef.current) {
-        socketRef.current = io('http://10.75.57.153:8000');
+        socketRef.current = io(url);
     }
 
     const socket = socketRef.current;
