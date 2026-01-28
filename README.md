@@ -8,7 +8,7 @@ vsTalk は、
 
 ## リンク
 
-- **アプリ URL**:https://ashiart.vercel.app/
+- **アプリ URL**:https://vs-talk.vercel.app
 
 ## 製品概要
 
@@ -68,8 +68,6 @@ vsTalk は、
 一人の話が長すぎる
 
 話題からの脱線
-
-<div><video height="300" controls src="./images/vsTalk_demo.mp4" muted="false"></video></div>
 
 vsTalk は、会議を **「我慢の場」** ではなく、ルールのあるゲームのような体験に変えることを目指しています。
 
