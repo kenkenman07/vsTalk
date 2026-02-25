@@ -1,4 +1,4 @@
-# [vsTalk](https://vs-talk.vercel.app) 建設的な話し合いを、もっと気軽に。
+# [vsTalk]() 建設的な話し合いを、もっと気軽に。
 
 ![README_header](./images/vsTalk.png)
 
@@ -8,7 +8,7 @@ vsTalk は、
 
 ## リンク
 
-- **アプリ URL**:https://vs-talk.vercel.app
+- **アプリ URL**:
 
 ## 製品概要
 
@@ -69,11 +69,7 @@ vsTalk は、
 
 話題からの脱線
 
-
-
 https://github.com/user-attachments/assets/19504d6e-ce57-4310-b81e-20a50bb4d898
-
-
 
 vsTalk は、会議を **「我慢の場」** ではなく、ルールのあるゲームのような体験に変えることを目指しています。
 
