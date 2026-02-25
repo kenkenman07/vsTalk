@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from "react-router";
+import { Navigate } from "react-router";
 import { LogIn, ChromeIcon } from "lucide-react";
 import { motion } from "motion/react";
 import { authRepository } from "../modules/auth/auth.repository";

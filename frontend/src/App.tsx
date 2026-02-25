@@ -4,7 +4,6 @@ import Home from "./pages/Home";
 import Start from "./pages/Start";
 import Meeting from "./pages/Meeting";
 import Result from "./pages/Result";
-import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Join from "./pages/Join";
 import Profile from "./pages/Profile";
@@ -31,7 +30,6 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
 
         <Route path="/" element={<Layout />}>

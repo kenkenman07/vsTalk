@@ -1,14 +1,5 @@
 import { Link } from "react-router";
-import {
-  ArrowLeft,
-  User,
-  Mail,
-  MapPin,
-  Calendar,
-  ThumbsUp,
-  Trophy,
-  TrendingUp,
-} from "lucide-react";
+import { ArrowLeft, ThumbsUp, User } from "lucide-react";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { likesRepository } from "../modules/likes/likes.repository";

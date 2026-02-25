@@ -32,7 +32,6 @@ export default function Meeting() {
 
   const [timeLeft, setTimeLeft] = useState(duration * 60); // 秒に変換
   const [isRunning, setIsRunning] = useState(true);
-  const [stopCount, setStopCount] = useState(0);
   const [selectedReason, setSelectedReason] = useState<string>("");
   const [showStopModal, setShowStopModal] = useState(false);
   const [stopTimeLeft, setStopTimeLeft] = useState(60); // 停止時間（秒）
@@ -121,7 +120,6 @@ export default function Meeting() {
     }
 
     setIsRunning(false);
-    setStopCount((prev) => prev + 1);
     setShowStopModal(true);
 
     socket.emit("stop", selectedReason);

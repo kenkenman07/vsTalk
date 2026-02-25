@@ -2,7 +2,6 @@ import { Link, useSearchParams } from "react-router";
 import { Home, Trophy, ThumbsUp, BarChart, Crown } from "lucide-react";
 import { motion } from "motion/react";
 import { useParticipantStore } from "../modules/participant/participant.state";
-import { useEffect } from "react";
 
 export default function Result() {
   const [searchParams] = useSearchParams();
@@ -24,11 +23,6 @@ export default function Result() {
     if (index === 1) return "from-gray-300 to-gray-400";
     if (index === 2) return "from-amber-600 to-amber-700";
     return "from-purple-400 to-pink-500";
-  };
-
-  const getRankIcon = (index: number) => {
-    if (index === 0) return <Crown className="w-6 h-6 text-yellow-400" />;
-    return null;
   };
 
   return (
