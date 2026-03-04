@@ -1,8 +1,9 @@
-import { Link } from "react-router";
-import { User, Play, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
 import { useEffect } from "react";
 import { useParticipantStore } from "../modules/participant/participant.state";
+import ProfileIcon from "../components/Home/ProfileIcon";
+import StartButton from "../components/Home/StartButton";
+import JoinButton from "../components/Home/JoinButton";
 
 export default function Home() {
   const participantStore = useParticipantStore();
@@ -35,13 +36,7 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <Link
-            to="/profile"
-            className="w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all hover:scale-110 group"
-            aria-label="プロフィール"
-          >
-            <User className="w-6 h-6 text-white group-hover:text-purple-300 transition-colors" />
-          </Link>
+          <ProfileIcon />
         </motion.div>
       </header>
 
@@ -57,70 +52,14 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-8"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10 mb-8">
-              <Sparkles className="w-4 h-4 text-yellow-400" />
-            </div>
             <h1 className="text-7xl md:text-8xl mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent leading-tight">
               vsTalk
             </h1>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <Link
-              to="/start"
-              className="group relative inline-flex items-center justify-center gap-4 px-12 py-6 md:px-16 md:py-8 text-xl md:text-2xl overflow-hidden rounded-2xl transition-all hover:scale-105"
-            >
-              {/* Gradient Background */}
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 transition-all group-hover:shadow-[0_0_40px_rgba(16,185,129,0.6)]"></div>
+          <StartButton />
 
-              {/* Shine Effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-              </div>
-
-              {/* Content */}
-              <Play
-                className="relative w-8 h-8 md:w-10 md:h-10 text-white"
-                fill="currentColor"
-              />
-              <span className="relative text-white font-medium">
-                ルーム作成
-              </span>
-            </Link>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-6"
-          >
-            <Link
-              to="/join"
-              className="group relative inline-flex items-center justify-center gap-4 px-12 py-6 md:px-16 md:py-8 text-xl md:text-2xl overflow-hidden rounded-2xl transition-all hover:scale-105"
-            >
-              {/* Gradient Background */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 transition-all group-hover:shadow-[0_0_40px_rgba(59,130,246,0.6)]"></div>
-
-              {/* Shine Effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-              </div>
-
-              {/* Content */}
-              <Play
-                className="relative w-8 h-8 md:w-10 md:h-10 text-white"
-                fill="currentColor"
-              />
-              <span className="relative text-white font-medium">
-                ルーム参加
-              </span>
-            </Link>
-          </motion.div>
+          <JoinButton />
 
           <motion.p
             initial={{ opacity: 0 }}

@@ -36,8 +36,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/start" element={<Start />} />
           <Route path="join" element={<Join />} />
-          <Route path="/meeting/:roomName/:duration" element={<Meeting />} />
-          <Route path="result" element={<Result />} />
+          <Route path="/meeting/:roomId" element={<Meeting />} />
+          <Route path="result/:roomName/:stopCount" element={<Result />} />
           <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>

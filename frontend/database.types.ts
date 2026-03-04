@@ -17,24 +17,51 @@ export type Database = {
       likes: {
         Row: {
           created_at: string
-          id: number
+          id: number | null
           likes: number
           user_id: string
           user_name: string
         }
         Insert: {
           created_at?: string
-          id?: number
+          id?: number | null
           likes?: number
           user_id?: string
           user_name: string
         }
         Update: {
           created_at?: string
-          id?: number
+          id?: number | null
           likes?: number
           user_id?: string
           user_name?: string
+        }
+        Relationships: []
+      }
+      room: {
+        Row: {
+          create_user_id: string
+          created_at: string
+          endsAt: string
+          id: number
+          room_name: string | null
+          total_minutes: number | null
+        }
+        Insert: {
+          create_user_id?: string
+          created_at?: string
+          endsAt: string
+          id?: number
+          room_name?: string | null
+          total_minutes?: number | null
+        }
+        Update: {
+          create_user_id?: string
+          created_at?: string
+          endsAt?: string
+          id?: number
+          room_name?: string | null
+          total_minutes?: number | null
         }
         Relationships: []
       }
