@@ -11,7 +11,7 @@ const RoomList = ({ rooms }: RoomListProps) => {
   const navigate = useNavigate();
 
   const handleJoinRoom = (room: Room) => {
-    navigate(`/meeting/${room.room_name}/${room.total_minutes}`);
+    navigate(`/meeting/${room.id}`);
   };
 
   return (
