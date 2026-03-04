@@ -5,10 +5,15 @@ import { useCurrentUserStore } from "../modules/auth/current-user.state";
 import HomeButton from "../components/HomeButton";
 import StatusSection from "../components/Profile/StatusSection";
 import UserIcon from "../components/Profile/UserIcon";
+import { LogOut } from "lucide-react";
+import { authRepository } from "../modules/auth/auth.repository";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
+  const currentUserStore = useCurrentUserStore();
   const { currentUser } = useCurrentUserStore();
   const [likes, setLikes] = useState<number>(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchLikes();
@@ -18,6 +23,12 @@ export default function Profile() {
     const likesRow = await likesRepository.find(currentUser!.id);
     if (likesRow == null) return;
     setLikes(likesRow.likes);
+  };
+
+  const handleSignOut = async () => {
+    await authRepository.signOut();
+    currentUserStore.set(undefined);
+    navigate("/signin");
   };
 
   return (
@@ -50,6 +61,21 @@ export default function Profile() {
 
             <StatusSection likes={likes} />
           </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.1 }}
+          className="mt-8 pt-8 border-t border-white/10"
+        >
+          <button
+            onClick={handleSignOut}
+            className="inline-flex items-center gap-2 text-gray-300 hover:text-white transition-colors group"
+          >
+            <LogOut className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+            <span>ログアウト</span>
+          </button>
         </motion.div>
       </div>
     </div>

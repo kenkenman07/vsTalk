@@ -27,4 +27,8 @@ export const authRepository = {
       userName: data.session.user.user_metadata.name,
     };
   },
+
+  async signOut() {
+    await supabase.auth.signOut();
+  },
 };
