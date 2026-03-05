@@ -6,13 +6,14 @@ const participantAtom = atom<Participant[]>([]);
 export const useParticipantStore = () => {
   const [participant, setParticipant] = useAtom(participantAtom);
 
-  const setUser = (usersName: string[]) => {
+  const setUser = (users: { id: string; name: string }[]) => {
     setParticipant((prev) => {
-      const prevLikes = new Map(prev?.map((p) => [p.name, p.likes]));
+      const prevLikes = new Map(prev?.map((p) => [p.id, p.likes]));
 
-      return usersName.map((name) => ({
-        name,
-        likes: prevLikes.get(name) ?? 0,
+      return users.map((u) => ({
+        id: u.id,
+        name: u.name,
+        likes: prevLikes.get(u.id) ?? 0,
       }));
     });
   };

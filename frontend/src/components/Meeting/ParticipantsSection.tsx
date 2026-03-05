@@ -10,8 +10,8 @@ type ParticipantsSectionProps = {
 const ParticipantsSection = ({ participant }: ParticipantsSectionProps) => {
   const participantStore = useParticipantStore();
 
-  const handleLike = (participantName: string) => {
-    participantStore.setLike(participantName);
+  const handleLike = (participantId: string) => {
+    participantStore.setLike(participantId);
   };
 
   return (

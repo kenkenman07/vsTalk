@@ -14,6 +14,7 @@ import MeetingHeader from "../components/Meeting/MeetingHeader";
 import ConnectionModal from "../components/Meeting/ConnectionModal";
 import { roomRepository } from "../modules/room/room.repository";
 import { AlertCircle } from "lucide-react";
+import type { User } from "@supabase/supabase-js";
 
 export default function Meeting() {
   const [roomName, setRoomName] = useState("");
@@ -63,12 +64,16 @@ export default function Meeting() {
     if (!socket.connected) setIsConnected(false);
     else setIsConnected(true);
 
-    socket.on("checkRoom", (usersName: string[]) => {
-      participantStore.setUser(usersName);
+    socket.on("checkRoom", (users: { id: string; name: string }[]) => {
+      participantStore.setUser(users);
       console.log(participantStore.participant);
     });
 
-    socket.emit("room", { roomName, username });
+    socket.emit("room", {
+      roomName,
+      userId: user!.id,
+      userName: user?.user_metadata.name,
+    });
 
     socket.on("stop", (msg) => {
       setRecvReason(msg);
