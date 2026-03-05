@@ -14,7 +14,6 @@ import MeetingHeader from "../components/Meeting/MeetingHeader";
 import ConnectionModal from "../components/Meeting/ConnectionModal";
 import { roomRepository } from "../modules/room/room.repository";
 import { AlertCircle } from "lucide-react";
-import type { User } from "@supabase/supabase-js";
 
 export default function Meeting() {
   const [roomName, setRoomName] = useState("");
@@ -24,7 +23,6 @@ export default function Meeting() {
 
   const currentUserStore = useCurrentUserStore();
   const user = currentUserStore.currentUser;
-  const username = user?.user_metadata.name;
   const userId = user?.id;
 
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
