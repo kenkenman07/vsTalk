@@ -76,6 +76,8 @@
 
 - ルーム作成
 - ルーム参加
+- ルーム退出
+- ルーム一覧取得
 
 ### hooks
 
@@ -109,10 +111,17 @@
 
 #### ルーム参加(joinRoom)
 
-- room_member を更新
-  - 参加者を増やす
+- rooms.num_member 更新 (+1)
+- room_member に新規追加
   - &取得
 - roomMember.state に登録
+
+#### ルーム退出
+
+- room_member から本人を削除
+- room_member を数えて 0 人なら empty_since = now()
+
+#### ルーム一覧取得
 
 ### hooks
 
@@ -147,6 +156,8 @@
 - id (↔roomMember:roomId)
 - name
 - createdAt
+- empty_since
+- num_member
 
 #### room_member
 
