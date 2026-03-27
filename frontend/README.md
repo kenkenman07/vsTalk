@@ -1,35 +1,163 @@
-1. スコア機能（議論戦闘力）
-2. STOP 蓄積機能（三回でストップ）
+# vsTalk フロントエンド 設計書
 
-- 1 分間のストップ&話題の切り替え
+## 機能
 
-3. アカウント登録機能
-4. 会議時間設定機能
+### 主機能
 
-##　非機能
+- ルーム作成機能
+  - 時間設定
+  - ルーム名
+- ルーム参加機能
+  - socket.io のルーム機能
+- 議論中断機能
+  - socket.io
 
-1. 接続中画面
-2. 接続切れ画面
+### サブ機能
 
-- 管理者に連絡してください
-
-## データベース
-
-1. (User)
-2. スコア
+- ユーザ登録
+  - Google ログイン
+- ルーム削除
+  - ユーザが 0 人になってから 10 分で削除
+  - supabase edge function
 
 ## ページ
 
-1. アカウントページ
-2. ホーム画面
-3. (ランキング画面)
+- サインインページ(/signin)
 
-## 次回やること
+  - Google サインイン ボタン
 
-参加者の名前が表示されない
-id をサーバに送る。
-id が返ってくるからその名前を格納する
+- ホームページ(/)
 
-ルーム終了時に他のメンバーに知らせられない
+  - ルーム作成遷移ボタン
+  - ルーム参加遷移ボタン
+  - プロフィールページ遷移ボタン
 
-ルーム停止できない
+- ルーム作成ページ(/create)
+
+  - 戻るボタン
+    - ホームページ遷移
+  - ルーム情報入力
+
+    - ルーム名
+
+  - 作成ボタン
+    - DB 登録(makeRoom)
+    - 議論ページ遷移
+
+- ルーム参加ページ(/join)
+
+  - 戻るボタン
+  - ルーム一覧
+    - ルーム名
+    - 参加人数
+  - ルーム選択
+  - 参加ボタン
+    - 議論ページ遷移
+
+- 議論ページ(/meet)
+  - 退出ボタン
+    - ホームページ遷移
+  - 議論中断理由選択
+    - ４つ
+  - 議論中断ボタン
+  - メンバー一覧
+  - 経過時間表示
+
+## ロジック
+
+### services
+
+#### auth
+
+- サインイン
+- サインアウト
+
+#### rooms
+
+- ルーム作成
+- ルーム参加
+
+### hooks
+
+- ソケット通信
+
+### auth
+
+#### サインイン(signIn)
+
+- Google ログイン
+  - (supabase に Google ID, key を登録)
+- ユーザ情報取得
+  - getSession()
+- currentUser.state に登録
+
+#### サインアウト(signOut)
+
+- auth.signOut()
+- currentUser.state をリセット
+
+### rooms
+
+#### ルーム作成(ルーム名)(createRoom)
+
+- rooms に登録
+  - &取得
+- room_member に登録
+  - &取得
+- rooms.state に登録
+- roomMember.state に登録
+
+#### ルーム参加(joinRoom)
+
+- room_member を更新
+  - 参加者を増やす
+  - &取得
+- roomMember.state に登録
+
+### hooks
+
+#### ソケット通信(useSocket)
+
+- socket.ts からクライアントをインポート
+  {
+  createRoom,
+  sendMessage,
+  registerMessageHandler,
+  message
+  }
+
+#### ルーム作成機能
+
+- roomId を送る
+
+#### メッセージ送信機能
+
+- メッセージを送る
+
+#### メッセージ受信ハンドラ登録機能
+
+- メッセージを受け取った際のハンドラを登録する
+
+## データ保管
+
+### DB
+
+#### rooms
+
+- id (↔roomMember:roomId)
+- name
+- createdAt
+
+#### room_member
+
+- roomId (↔rooms:id)
+- member_id(↔auth:id)
+
+### jotai
+
+#### currentUser.state
+
+#### roomInfo.state
+
+- Room
+- RoomMember
