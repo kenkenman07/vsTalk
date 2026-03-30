@@ -111,7 +111,6 @@
 
 #### ルーム参加(joinRoom)
 
-- rooms.num_member 更新 (+1)
 - room_member に新規追加
   - &取得
 - roomMember.state に登録
@@ -157,7 +156,6 @@
 - name
 - createdAt
 - empty_since
-- num_member
 
 #### room_member
 
