@@ -10,14 +10,6 @@ export const authRepository = {
     if (error) throw new Error(error?.message);
   },
 
-  async signInGitHub() {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "github",
-      options: { redirectTo },
-    });
-    if (error) throw new Error(error?.message);
-  },
-
   async getCurrentUser() {
     const { data, error } = await supabase.auth.getSession();
     if (error != null) throw new Error(error?.message);
