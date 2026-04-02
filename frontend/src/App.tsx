@@ -34,7 +34,7 @@ function App() {
 
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/start" element={<Start />} />
+          <Route path="/create" element={<Start />} />
           <Route path="join" element={<Join />} />
           <Route path="/meeting/:roomId" element={<Meeting />} />
           <Route path="result/:roomName/:stopCount" element={<Result />} />
