@@ -1,6 +1,9 @@
 import { Hand } from "lucide-react";
 import { useState } from "react";
 import useRoomInfoStore from "../modules/roomInfo.ts/roomInfo.state";
+import { roomService } from "../services/room/room.service";
+import { useCurrentUserStore } from "../modules/auth/current-user.state";
+import { useNavigate } from "react-router-dom";
 
 const stopReasons = [
   "話の繰り返し",
@@ -13,9 +16,21 @@ const Meeting = () => {
   const [selectedReason, setSelectedReason] = useState("");
   const [isHover, setIsHover] = useState<number | null>(null);
   const roomInfoStore = useRoomInfoStore();
+  const currentUserStore = useCurrentUserStore();
+  const navigate = useNavigate();
 
   if (!roomInfoStore) return;
   const members = roomInfoStore.roomInfo?.members;
+
+  const handleExit = async () => {
+    if (!currentUserStore.currentUser) return;
+    await roomService.exitRoom(
+      roomInfoStore.roomInfo!.id,
+      currentUserStore.currentUser?.id
+    );
+
+    navigate("/");
+  };
 
   return (
     <div>
@@ -64,7 +79,12 @@ const Meeting = () => {
           </div>
         </div>
       </div>
-      <div className="fixed bottom-20 right-20">退出</div>
+      <button
+        onClick={handleExit}
+        className="fixed bottom-20 right-20 border rounded-2xl p-3"
+      >
+        退出
+      </button>
     </div>
   );
 };

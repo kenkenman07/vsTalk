@@ -7,13 +7,13 @@ export const roomService = {
     roomName: string,
     userId: string,
     userName: string,
-    setRoomInfo: (info: RoomInfo) => void,
+    setRoomInfo: (info: RoomInfo) => void
   ) {
     const room = await roomsRepository.create(roomName);
     const roomIdAndUser = await roomMemberRepository.create(
       room.id,
       userId,
-      userName,
+      userName
     );
 
     setRoomInfo({
@@ -28,5 +28,13 @@ export const roomService = {
     });
 
     return room.id;
+  },
+
+  async exitRoom(roomId: number, userId: string) {
+    await roomMemberRepository.delete(roomId, userId);
+    const roomData = await roomMemberRepository.find(roomId);
+    if (roomData.length == 0) {
+      await roomsRepository.delete(roomId);
+    }
   },
 };

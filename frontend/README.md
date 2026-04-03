@@ -124,6 +124,7 @@
 - room_member から本人を削除
 - room_member を数えて 0 人なら
   - rooms から該当 room 消す
+- roomInfo をリセット → 未実装
 
 #### ルーム一覧取得
 
@@ -175,3 +176,7 @@
 - [rooms][id]
 - [rooms][name]
 - [room_member][member_id]
+
+## 修正点
+
+- グローバルステートの処理をサービスから UI 側に持ってくる
