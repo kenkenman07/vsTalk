@@ -1,16 +1,22 @@
-import { useNavigate } from "react-router-dom";
+import { User } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Home() {
   const navigate = useNavigate();
 
   return (
     <div>
-      <div className="fixed top-7 right-7">アイコン</div>
+      <Link
+        to="/profile"
+        className="fixed top-8 right-8 rounded-full border p-6"
+      >
+        <User />
+      </Link>
 
       <div className="flex flex-col items-center justify-center min-h-screen gap-30">
         <h1 className="text-8xl font-bold">vsTalk</h1>
 
-        <div className="flex flex-col gap-10 text-2xl">
+        <div className="flex flex-col gap-10 text-2xl font-medium">
           <button
             onClick={() => navigate("/create")}
             className="rounded-xl bg-red-500 p-7"
