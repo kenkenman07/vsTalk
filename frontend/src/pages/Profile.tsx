@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { likesRepository } from "../modules/likes/likes.repository";
 import { useCurrentUserStore } from "../modules/auth/current-user.state";
 import HomeButton from "../components/HomeButton";
 import StatusSection from "../components/Profile/StatusSection";
@@ -14,16 +13,6 @@ export default function Profile() {
   const { currentUser } = useCurrentUserStore();
   const [likes, setLikes] = useState<number>(0);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchLikes();
-  }, []);
-
-  const fetchLikes = async () => {
-    const likesRow = await likesRepository.find(currentUser!.id);
-    if (likesRow == null) return;
-    setLikes(likesRow.likes);
-  };
 
   const handleSignOut = async () => {
     await authRepository.signOut();

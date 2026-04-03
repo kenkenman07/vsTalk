@@ -1,21 +1,26 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useCurrentUserStore } from "../modules/auth/current-user.state";
+import { roomService } from "../services/room/room.service";
+import { useState } from "react";
+import useRoomInfoStore from "../modules/roomInfo.ts/roomInfo.state";
 
 export default function Create() {
   const navigate = useNavigate();
   const { currentUser } = useCurrentUserStore();
+  const [roomName, setRoomName] = useState<string>("");
+  const roomInfoStore = useRoomInfoStore();
 
-  // const handleCreateRoom = async () => {
-  //   if (currentUser == null) return;
-  //   const data = await roomRepository.create(
-  //     roomName,
-  //     currentUser?.id,
-  //     );
+  const handleCreateRoom = async () => {
+    if (currentUser == null) return;
 
-  //   const roomId = data.id;
+    const roomId = await roomService.createRoom(
+      roomName,
+      currentUser.id,
+      roomInfoStore.set
+    );
 
-  //   navigate(`/meeting/${roomId}`);
-  // };
+    navigate(`/meeting/${roomId}`);
+  };
 
   return (
     <div className="bg-gray-100">
@@ -33,13 +38,17 @@ export default function Create() {
               <input
                 placeholder="ルーム名を入力"
                 type="text"
+                onChange={(e) => setRoomName(e.target.value)}
                 className="px-8 py-4 border rounded-2xl bg-gray-200 placeholder-gray-900 "
               />
             </label>
 
-            <div className="rounded-lg border bg-red-500 font-medium p-5">
+            <button
+              onClick={handleCreateRoom}
+              className="rounded-lg border bg-red-500 font-medium p-5"
+            >
               作成ボタン
-            </div>
+            </button>
           </div>
         </div>
       </div>
