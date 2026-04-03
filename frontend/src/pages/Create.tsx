@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCurrentUserStore } from "../modules/auth/current-user.state";
-import { roomRepository } from "../modules/room/room.repository";
 
 export default function Create() {
   const navigate = useNavigate();

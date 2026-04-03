@@ -2,9 +2,9 @@ import JoinTitle from "../components/Join/JoinTitle";
 import HomeButton from "../components/HomeButton";
 import RoomList from "../components/Join/RoomList";
 import CreateRoomLink from "../components/Join/CreateRoomLink";
-import { roomRepository } from "../modules/room/room.repository";
+import { roomRepository } from "../modules/rooms/room.repository";
 import { useEffect, useState } from "react";
-import type { Room } from "../modules/room/room.entity";
+import type { Room } from "../modules/rooms/room.entity";
 
 export default function Join() {
   const [rooms, setRooms] = useState<Room[]>([]);

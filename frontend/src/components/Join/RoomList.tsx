@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import type { Room } from "../../modules/room/room.entity";
+import type { Room } from "../../modules/rooms/room.entity";
 
 type RoomListProps = {
   rooms: Room[];

@@ -12,7 +12,7 @@ import StopReasonSelection from "../components/Meeting/StopReasonSelection";
 import StopModal from "../components/Meeting/StopModal";
 import MeetingHeader from "../components/Meeting/MeetingHeader";
 import ConnectionModal from "../components/Meeting/ConnectionModal";
-import { roomRepository } from "../modules/room/room.repository";
+import { roomRepository } from "../modules/rooms/room.repository";
 import { AlertCircle } from "lucide-react";
 
 export default function Meeting() {
