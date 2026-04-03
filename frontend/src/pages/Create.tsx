@@ -16,7 +16,8 @@ export default function Create() {
     const roomId = await roomService.createRoom(
       roomName,
       currentUser.id,
-      roomInfoStore.set
+      currentUser.user_metadata.name,
+      roomInfoStore.set,
     );
 
     navigate(`/meeting/${roomId}`);

@@ -17,14 +17,17 @@ export type Database = {
       room_member: {
         Row: {
           member_id: string | null
+          member_name: string | null
           room_id: number
         }
         Insert: {
           member_id?: string | null
+          member_name?: string | null
           room_id?: number
         }
         Update: {
           member_id?: string | null
+          member_name?: string | null
           room_id?: number
         }
         Relationships: [

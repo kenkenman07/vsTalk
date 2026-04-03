@@ -6,15 +6,25 @@ export const roomService = {
   async createRoom(
     roomName: string,
     userId: string,
-    setRoomInfo: (info: RoomInfo) => void
+    userName: string,
+    setRoomInfo: (info: RoomInfo) => void,
   ) {
     const room = await roomsRepository.create(roomName);
-    const roomIdAndUserId = await roomMemberRepository.create(room.id, userId);
+    const roomIdAndUser = await roomMemberRepository.create(
+      room.id,
+      userId,
+      userName,
+    );
 
     setRoomInfo({
       id: room.id,
       name: room.name,
-      member_id: [roomIdAndUserId.member_id],
+      members: [
+        {
+          member_id: roomIdAndUser.member_id,
+          member_name: roomIdAndUser.member_name,
+        },
+      ],
     });
 
     return room.id;
