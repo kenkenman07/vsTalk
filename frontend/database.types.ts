@@ -10,58 +10,51 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.1"
+    PostgrestVersion: "14.4"
   }
   public: {
     Tables: {
-      likes: {
+      room_member: {
         Row: {
-          created_at: string
-          id: number | null
-          likes: number
-          user_id: string
-          user_name: string
+          member_id: string | null
+          room_id: number
         }
         Insert: {
-          created_at?: string
-          id?: number | null
-          likes?: number
-          user_id?: string
-          user_name: string
+          member_id?: string | null
+          room_id?: number
         }
         Update: {
-          created_at?: string
-          id?: number | null
-          likes?: number
-          user_id?: string
-          user_name?: string
+          member_id?: string | null
+          room_id?: number
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "room_member_room_id_fkey"
+            columns: ["room_id"]
+            isOneToOne: true
+            referencedRelation: "rooms"
+            referencedColumns: ["id"]
+          },
+        ]
       }
-      room: {
+      rooms: {
         Row: {
-          create_user_id: string
           created_at: string
-          endsAt: string
+          empty_since: string | null
           id: number
-          room_name: string | null
-          total_minutes: number | null
+          name: string
         }
         Insert: {
-          create_user_id?: string
           created_at?: string
-          endsAt: string
+          empty_since?: string | null
           id?: number
-          room_name?: string | null
-          total_minutes?: number | null
+          name: string
         }
         Update: {
-          create_user_id?: string
           created_at?: string
-          endsAt?: string
+          empty_since?: string | null
           id?: number
-          room_name?: string | null
-          total_minutes?: number | null
+          name?: string
         }
         Relationships: []
       }
@@ -70,9 +63,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      updatelikes:
-        | { Args: { amount: number; userid: string }; Returns: undefined }
-        | { Args: { amount: number; username: string }; Returns: undefined }
+      [_ in never]: never
     }
     Enums: {
       [_ in never]: never

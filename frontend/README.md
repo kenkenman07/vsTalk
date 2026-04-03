@@ -36,7 +36,10 @@
 - ルーム作成ページ(/create)
 
   - 戻るボタン
+
     - ホームページ遷移
+
+  - タイトル
   - ルーム情報入力
 
     - ルーム名
@@ -169,5 +172,6 @@
 
 #### roomInfo.state
 
-- Room
-- RoomMember
+- [rooms][id]
+- [rooms][name]
+- [room_member][member_id]

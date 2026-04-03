@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "./pages/Home";
-import Start from "./pages/Start";
+import Create from "./pages/Create";
 import Meeting from "./pages/Meeting";
 import Result from "./pages/Result";
 import Signin from "./pages/Signin";
@@ -34,7 +34,7 @@ function App() {
 
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/create" element={<Start />} />
+          <Route path="/create" element={<Create />} />
           <Route path="join" element={<Join />} />
           <Route path="/meeting/:roomId" element={<Meeting />} />
           <Route path="result/:roomName/:stopCount" element={<Result />} />

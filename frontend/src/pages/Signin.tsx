@@ -14,7 +14,7 @@ export default function Signin() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
-      <div className="flex flex-col items-center gap-4 border rounded-2xl shadow-md p-8">
+      <div className="flex flex-col items-center gap-4 border rounded-2xl bg-white shadow-md p-8">
         <h1 className="text-3xl font-bold">vsTalk</h1>
 
         <button
