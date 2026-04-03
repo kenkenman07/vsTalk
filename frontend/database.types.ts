@@ -43,19 +43,16 @@ export type Database = {
       rooms: {
         Row: {
           created_at: string
-          empty_since: string | null
           id: number
           name: string
         }
         Insert: {
           created_at?: string
-          empty_since?: string | null
           id?: number
           name: string
         }
         Update: {
           created_at?: string
-          empty_since?: string | null
           id?: number
           name?: string
         }

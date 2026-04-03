@@ -122,7 +122,8 @@
 #### ルーム退出
 
 - room_member から本人を削除
-- room_member を数えて 0 人なら empty_since = now()
+- room_member を数えて 0 人なら
+  - rooms から該当 room 消す
 
 #### ルーム一覧取得
 
@@ -159,7 +160,6 @@
 - id (↔roomMember:roomId)
 - name
 - createdAt
-- empty_since
 
 #### room_member
 

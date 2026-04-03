@@ -31,4 +31,14 @@ export const roomsRepository = {
 
     return data;
   },
+
+  async delete(roomId: number) {
+    const { data, error } = await supabase
+      .from("rooms")
+      .delete()
+      .eq("id", roomId);
+
+    if (error != null) throw new Error(error.message);
+    return data;
+  },
 };

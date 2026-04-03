@@ -20,11 +20,14 @@ const Meeting = () => {
   return (
     <div>
       <div className="flex min-h-screen items-center justify-center">
-        <ul className="fixed top-10 right-20">
-          {members?.map((member) => {
-            return <li key={member.member_id}>{member.member_name}</li>;
-          })}
-        </ul>
+        <div className="fixed top-10 right-20 flex flex-col gap-4">
+          メンバー
+          <ul className="">
+            {members?.map((member) => {
+              return <li key={member.member_id}>{member.member_name}</li>;
+            })}
+          </ul>
+        </div>
 
         <div className="flex flex-col items-center gap-80">
           <div className="flex flex-col items-center gap-3">
@@ -44,7 +47,10 @@ const Meeting = () => {
                     onClick={() => setSelectedReason(reason)}
                     onMouseEnter={() => setIsHover(i)}
                     onMouseLeave={() => setIsHover(null)}
-                    className={`border rounded-2xl p-6 ${selectedReason == reason && "bg-red-400 text-white font-bold"} ${isHover == i && "bg-red-300 text-white font-bold"}`}
+                    className={`border rounded-2xl p-6 ${
+                      selectedReason == reason &&
+                      "bg-red-400 text-white font-bold"
+                    } ${isHover == i && "bg-red-300 text-white font-bold"}`}
                   >
                     {reason}
                   </button>
