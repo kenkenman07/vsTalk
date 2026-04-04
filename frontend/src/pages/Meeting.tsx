@@ -16,10 +16,39 @@ const stopReasons = [
 const Meeting = () => {
   const [selectedReason, setSelectedReason] = useState("");
   const [isHover, setIsHover] = useState<number | null>(null);
+  const [timer, setTimer] = useState(0);
+  const [modalMessage, setModalMessage] = useState("");
+  const [modalTimer, setModalTimer] = useState(0);
   const roomInfoStore = useRoomInfoStore();
   const currentUserStore = useCurrentUserStore();
   const { joinRoom, sendMessage, message } = useSocket();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!message) return;
+
+    setModalMessage(message);
+    const timer = setInterval(() => {
+      setModalTimer((prev) => {
+        if (prev >= 4) {
+          setModalMessage("");
+          clearInterval(timer);
+          return 0;
+        }
+        return prev + 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [message]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimer((prev) => prev + 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     if (!roomInfoStore.roomInfo) return;
@@ -34,7 +63,7 @@ const Meeting = () => {
     await roomService.exitRoom(
       roomInfoStore.roomInfo!.id,
       currentUserStore.currentUser?.id,
-      roomInfoStore.set
+      roomInfoStore.set,
     );
 
     navigate("/");
@@ -64,14 +93,14 @@ const Meeting = () => {
               {roomInfoStore.roomInfo?.name}
             </div>
 
-            <div>経過時間</div>
+            <div>{timer}</div>
           </div>
 
-          {message ? (
+          {modalMessage ? (
             <div className="fixed inset-0 flex items-center justify-center">
               <div className="flex flex-col gap-3 items-center px-40 py-20 bg-yellow-300 shadow-md ">
-                <div className="text-4xl font-bold">{message}</div>
-                <div>経過時間</div>
+                <div className="text-4xl font-bold">{modalMessage}</div>
+                <div>{modalTimer}</div>
               </div>
             </div>
           ) : (
