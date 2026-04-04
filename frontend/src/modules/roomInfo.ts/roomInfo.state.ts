@@ -6,12 +6,9 @@ const roomInfoAtom = atom<RoomInfo | null>(null);
 const useRoomInfoStore = () => {
   const [roomInfo, setRoomInfo] = useAtom(roomInfoAtom);
 
-  const addMember = () => {};
-
   return {
     roomInfo,
     set: setRoomInfo,
-    addMember,
   };
 };
 export default useRoomInfoStore;

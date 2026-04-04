@@ -29,7 +29,7 @@ const Join = () => {
       room.name,
       currentUser.id,
       currentUser.user_metadata.name,
-      roomInfoStore.addMember,
+      roomInfoStore.set,
     );
 
     navigate(`/meeting/${room.id}`);
