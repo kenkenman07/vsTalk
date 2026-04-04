@@ -8,7 +8,7 @@ import useRoomInfoStore from "../modules/roomInfo.ts/roomInfo.state";
 export type RoomWithCount = { room: Room; memberCount: number };
 
 const Join = () => {
-  const [rooms, setRooms] = useState<RoomWithCount[] | []>([]);
+  const [rooms, setRooms] = useState<RoomWithCount[]>([]);
   const { currentUser } = useCurrentUserStore();
   const roomInfoStore = useRoomInfoStore();
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const Join = () => {
 
   const handleJoin = async (room: Room) => {
     if (!currentUser) return;
-    roomService.joinRoom(
+    await roomService.joinRoom(
       room.id,
       room.name,
       currentUser.id,
