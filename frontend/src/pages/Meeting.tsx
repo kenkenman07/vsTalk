@@ -1,9 +1,10 @@
 import { Hand } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useRoomInfoStore from "../modules/roomInfo.ts/roomInfo.state";
 import { roomService } from "../services/room/room.service";
 import { useCurrentUserStore } from "../modules/auth/current-user.state";
 import { useNavigate } from "react-router-dom";
+import useSocket from "../hooks/useSocket";
 
 const stopReasons = [
   "話の繰り返し",
@@ -17,7 +18,13 @@ const Meeting = () => {
   const [isHover, setIsHover] = useState<number | null>(null);
   const roomInfoStore = useRoomInfoStore();
   const currentUserStore = useCurrentUserStore();
+  const { joinRoom, sendMessage, message } = useSocket();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!roomInfoStore.roomInfo) return;
+    joinRoom(roomInfoStore.roomInfo?.id);
+  }, [roomInfoStore.roomInfo]);
 
   if (!roomInfoStore) return;
   const members = roomInfoStore.roomInfo?.members;
@@ -26,10 +33,17 @@ const Meeting = () => {
     if (!currentUserStore.currentUser) return;
     await roomService.exitRoom(
       roomInfoStore.roomInfo!.id,
-      currentUserStore.currentUser?.id
+      currentUserStore.currentUser?.id,
+      roomInfoStore.set
     );
 
     navigate("/");
+  };
+
+  const stop = () => {
+    if (!roomInfoStore.roomInfo) return;
+    sendMessage(roomInfoStore.roomInfo.id, selectedReason);
+    setSelectedReason("");
   };
 
   return (
@@ -53,6 +67,17 @@ const Meeting = () => {
             <div>経過時間</div>
           </div>
 
+          {message ? (
+            <div className="fixed inset-0 flex items-center justify-center">
+              <div className="flex flex-col gap-3 items-center px-40 py-20 bg-yellow-300 shadow-md ">
+                <div className="text-4xl font-bold">{message}</div>
+                <div>経過時間</div>
+              </div>
+            </div>
+          ) : (
+            <></>
+          )}
+
           <div className="flex flex-col items-center gap-10">
             <div className="flex gap-6">
               {stopReasons.map((reason, i) => {
@@ -73,15 +98,15 @@ const Meeting = () => {
               })}
             </div>
 
-            <div className="p-7 border rounded-full">
+            <button onClick={stop} className="p-7 border rounded-full">
               <Hand />
-            </div>
+            </button>
           </div>
         </div>
       </div>
       <button
         onClick={handleExit}
-        className="fixed bottom-20 right-20 border rounded-2xl p-3"
+        className="z-10 fixed bottom-20 right-20 bg-red-500 font-medium rounded-2xl p-4"
       >
         退出
       </button>

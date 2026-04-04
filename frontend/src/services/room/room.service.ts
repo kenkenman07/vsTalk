@@ -30,9 +30,14 @@ export const roomService = {
     return room.id;
   },
 
-  async exitRoom(roomId: number, userId: string) {
+  async exitRoom(
+    roomId: number,
+    userId: string,
+    setRoomInfo: (info: RoomInfo | null) => void
+  ) {
     await roomMemberRepository.delete(roomId, userId);
     const roomData = await roomMemberRepository.find(roomId);
+    setRoomInfo(null);
     if (roomData.length == 0) {
       await roomsRepository.delete(roomId);
     }

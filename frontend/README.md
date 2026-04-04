@@ -134,10 +134,11 @@
 
 - socket.ts からクライアントをインポート
   {
-  createRoom,
+  joinRoom,
   sendMessage,
   registerMessageHandler,
-  message
+  leaveRoom,
+  messages
   }
 
 #### ルーム作成機能
