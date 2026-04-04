@@ -3,7 +3,6 @@ import Layout from "./Layout";
 import Home from "./pages/Home";
 import Create from "./pages/Create";
 import Meeting from "./pages/Meeting";
-import Result from "./pages/Result";
 import Signin from "./pages/Signin";
 import Join from "./pages/Join";
 import Profile from "./pages/Profile";
@@ -37,7 +36,6 @@ function App() {
           <Route path="/create" element={<Create />} />
           <Route path="join" element={<Join />} />
           <Route path="/meeting/:roomId" element={<Meeting />} />
-          <Route path="result/:roomName/:stopCount" element={<Result />} />
           <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>

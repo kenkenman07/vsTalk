@@ -1,8 +1,6 @@
 import { motion } from "motion/react";
-import { useState } from "react";
 import { useCurrentUserStore } from "../modules/auth/current-user.state";
 import HomeButton from "../components/HomeButton";
-import StatusSection from "../components/Profile/StatusSection";
 import UserIcon from "../components/Profile/UserIcon";
 import { LogOut } from "lucide-react";
 import { authRepository } from "../modules/auth/auth.repository";
@@ -11,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 export default function Profile() {
   const currentUserStore = useCurrentUserStore();
   const { currentUser } = useCurrentUserStore();
-  const [likes, setLikes] = useState<number>(0);
+
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
@@ -47,8 +45,6 @@ export default function Profile() {
                 {currentUser?.user_metadata.name}
               </h1>
             </motion.div>
-
-            <StatusSection likes={likes} />
           </div>
         </motion.div>
 
