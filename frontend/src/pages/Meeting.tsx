@@ -24,6 +24,8 @@ const Meeting = () => {
   const { joinRoom, sendMessage, message } = useSocket();
   const navigate = useNavigate();
 
+  console.log(roomInfoStore.roomInfo);
+
   useEffect(() => {
     if (!message) return;
 
