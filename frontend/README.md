@@ -119,7 +119,10 @@
   - rooms から該当 room 消す
 - roomInfo をリセット → 未実装
 
-#### ルーム一覧取得
+#### ルーム一覧取得(getNameAndCount)
+
+- roomsから全room取得
+- room_memberで、各roomの人数を取得
 
 ### hooks
 

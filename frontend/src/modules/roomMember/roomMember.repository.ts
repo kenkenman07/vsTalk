@@ -36,4 +36,14 @@ export const roomMemberRepository = {
     if (error != null) throw new Error(error.message);
     return data;
   },
+
+  async count(roomId: number) {
+    const { count, error } = await supabase
+      .from("room_member")
+      .select("*", { count: "exact", head: true })
+      .eq("room_id", roomId);
+
+    if (error != null) throw new Error(error.message);
+    return count;
+  },
 };

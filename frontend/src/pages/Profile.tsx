@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useCurrentUserStore } from "../modules/auth/current-user.state";
 import HomeButton from "../components/HomeButton";
 import StatusSection from "../components/Profile/StatusSection";
