@@ -16,13 +16,22 @@ const stopReasons = [
 const Meeting = () => {
   const [selectedReason, setSelectedReason] = useState("");
   const [isHover, setIsHover] = useState<number | null>(null);
-  const [timer, setTimer] = useState(0);
+
   const [modalMessage, setModalMessage] = useState("");
   const [modalTimer, setModalTimer] = useState(0);
   const roomInfoStore = useRoomInfoStore();
   const currentUserStore = useCurrentUserStore();
   const { joinRoom, sendMessage, message } = useSocket();
   const navigate = useNavigate();
+  const [now, setNow] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setNow(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     if (!message) return;
@@ -43,14 +52,6 @@ const Meeting = () => {
   }, [message]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimer((prev) => prev + 1);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
     if (!roomInfoStore.roomInfo) return;
     joinRoom(roomInfoStore.roomInfo?.id);
   }, [roomInfoStore.roomInfo]);
@@ -63,11 +64,20 @@ const Meeting = () => {
     await roomService.exitRoom(
       roomInfoStore.roomInfo!.id,
       currentUserStore.currentUser?.id,
-      roomInfoStore.set,
+      roomInfoStore.set
     );
 
     navigate("/");
   };
+
+  if (!roomInfoStore.roomInfo) return;
+
+  const start = new Date(roomInfoStore.roomInfo?.createdAt);
+  const elapsedMs = now.getTime() - start.getTime();
+
+  const totalSec = Math.floor(elapsedMs / 1000);
+  const minutes = Math.floor(totalSec / 60);
+  const seconds = totalSec % 60;
 
   const stop = () => {
     if (!roomInfoStore.roomInfo) return;
@@ -93,7 +103,9 @@ const Meeting = () => {
               {roomInfoStore.roomInfo?.name}
             </div>
 
-            <div>{timer}</div>
+            <div>
+              {minutes}:{seconds.toString().padStart(2, "0")}
+            </div>
           </div>
 
           {modalMessage ? (

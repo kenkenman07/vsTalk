@@ -9,18 +9,19 @@ export const roomService = {
     roomName: string,
     userId: string,
     userName: string,
-    setRoomInfo: (info: RoomInfo) => void,
+    setRoomInfo: (info: RoomInfo) => void
   ) {
     const room = await roomsRepository.create(roomName);
     const roomIdAndUser = await roomMemberRepository.create(
       room.id,
       userId,
-      userName,
+      userName
     );
 
     setRoomInfo({
       id: room.id,
       name: room.name,
+      createdAt: room.created_at,
       members: [
         {
           member_id: roomIdAndUser.member_id,
@@ -35,9 +36,10 @@ export const roomService = {
   async joinRoom(
     roomId: number,
     roomName: string,
+    createdAt: string,
     userId: string,
     userName: string,
-    setRoomInfo: (info: RoomInfo) => void,
+    setRoomInfo: (info: RoomInfo) => void
   ) {
     await roomMemberRepository.create(roomId, userId, userName);
 
@@ -46,6 +48,7 @@ export const roomService = {
     setRoomInfo({
       id: roomId,
       name: roomName,
+      createdAt: createdAt,
       members: roomIdAndUsers.map((member) => ({
         member_id: member.member_id ?? "",
         member_name: member.member_name ?? "",
@@ -56,7 +59,7 @@ export const roomService = {
   async exitRoom(
     roomId: number,
     userId: string,
-    setRoomInfo: (info: RoomInfo | null) => void,
+    setRoomInfo: (info: RoomInfo | null) => void
   ) {
     await roomMemberRepository.delete(roomId, userId);
     const roomData = await roomMemberRepository.find(roomId);
@@ -76,7 +79,7 @@ export const roomService = {
           room,
           memberCount: count ?? 0,
         };
-      }),
+      })
     );
 
     return roomsWithCount;

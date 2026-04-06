@@ -4,6 +4,7 @@ import type { Room } from "../rooms/rooms.entity";
 export type RoomInfo = {
   id: Room["id"];
   name: Room["name"];
+  createdAt: string;
   members: {
     member_id: RoomMember["member_id"];
     member_name: RoomMember["member_name"];

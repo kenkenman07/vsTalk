@@ -27,9 +27,10 @@ const Join = () => {
     await roomService.joinRoom(
       room.id,
       room.name,
+      room.created_at,
       currentUser.id,
       currentUser.user_metadata.name,
-      roomInfoStore.set,
+      roomInfoStore.set
     );
 
     navigate(`/meeting/${room.id}`);
