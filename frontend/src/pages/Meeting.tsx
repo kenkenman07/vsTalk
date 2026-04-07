@@ -21,7 +21,7 @@ const Meeting = () => {
   const [modalTimer, setModalTimer] = useState(0);
   const roomInfoStore = useRoomInfoStore();
   const currentUserStore = useCurrentUserStore();
-  const { joinRoom, sendMessage, message, joinFlag } = useSocket();
+  const { joinRoom, sendMessage, sendExit, message, joinFlag } = useSocket();
   const navigate = useNavigate();
   const [now, setNow] = useState(new Date());
   const { roomId } = useParams();
@@ -79,13 +79,15 @@ const Meeting = () => {
       roomInfoStore.set,
     );
 
+    sendExit();
+
     navigate("/");
   };
 
-  if (!roomInfoStore.roomInfo) return;
+  if (!roomInfoStore.roomInfo) return <div></div>;
 
   const start = new Date(roomInfoStore.roomInfo?.createdAt);
-  const elapsedMs = now.getTime() - start.getTime();
+  const elapsedMs = Math.max(0, now.getTime() - start.getTime());
 
   const totalSec = Math.floor(elapsedMs / 1000);
   const minutes = Math.floor(totalSec / 60);

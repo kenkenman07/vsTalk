@@ -13,6 +13,14 @@ const useSocket = () => {
     socket.emit("sendMessage", { roomId, message });
   };
 
+  const sendExit = () => {
+    socket.emit("exit");
+  };
+
+  const handleIndicateExit = () => {
+    setJoinFlag((pre) => !pre);
+  };
+
   const handleReceiveMessage = (message: string) => {
     setMessage(message);
   };
@@ -24,16 +32,19 @@ const useSocket = () => {
   useEffect(() => {
     socket.on("receiveMessage", handleReceiveMessage);
     socket.on("indicateJoin", handleIndicateJoin);
+    socket.on("indicateExit", handleIndicateExit);
 
     return () => {
       socket.off("receiveMessage", handleReceiveMessage);
       socket.off("indicateJoin", handleIndicateJoin);
+      socket.off("indicateExit", handleIndicateExit);
     };
   }, []);
 
   return {
     joinRoom,
     sendMessage,
+    sendExit,
     message,
     joinFlag,
   };

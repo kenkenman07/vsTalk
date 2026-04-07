@@ -19,6 +19,10 @@ io.on("connection", (socket) => {
     io.to(roomId).emit("receiveMessage", message);
   });
 
+  socket.on("exit", () => {
+    io.to(roomId).emit("indicateExit");
+  });
+
   socket.on("disconnect", () => {
     console.log("disconnected");
   });
