@@ -18,7 +18,7 @@ const useSocket = () => {
   };
 
   const handleIndicateJoin = () => {
-    () => setJoinFlag((pre) => !pre);
+    setJoinFlag((pre) => !pre);
   };
 
   useEffect(() => {

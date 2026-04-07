@@ -64,9 +64,9 @@ const Meeting = () => {
   }, [message]);
 
   useEffect(() => {
-    if (!roomInfoStore.roomInfo) return;
-    joinRoom(roomInfoStore.roomInfo?.id);
-  }, [roomInfoStore.roomInfo]);
+    if (!roomIdNum) return;
+    joinRoom(roomIdNum);
+  }, [roomIdNum]);
 
   if (!roomInfoStore) return;
   const members = roomInfoStore.roomInfo?.members;
