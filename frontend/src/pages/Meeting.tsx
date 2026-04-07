@@ -79,7 +79,7 @@ const Meeting = () => {
       roomInfoStore.set,
     );
 
-    sendExit();
+    sendExit(roomIdNum);
 
     navigate("/");
   };

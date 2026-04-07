@@ -19,7 +19,7 @@ io.on("connection", (socket) => {
     io.to(roomId).emit("receiveMessage", message);
   });
 
-  socket.on("exit", () => {
+  socket.on("exit", (roomId) => {
     io.to(roomId).emit("indicateExit");
   });
 

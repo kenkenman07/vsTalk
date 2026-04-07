@@ -13,8 +13,8 @@ const useSocket = () => {
     socket.emit("sendMessage", { roomId, message });
   };
 
-  const sendExit = () => {
-    socket.emit("exit");
+  const sendExit = (roomId: number) => {
+    socket.emit("exit", roomId);
   };
 
   const handleIndicateExit = () => {
