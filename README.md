@@ -1,4 +1,4 @@
-# [vsTalk]() 建設的な話し合いを、もっと気軽に。
+# [vsTalk]() STOP!! の背徳感を味わおう
 
 ![README_header](./images/vsTalk.png)
 
@@ -8,7 +8,7 @@ vsTalk は、
 
 ## リンク
 
-- **アプリ URL**:
+- **アプリ URL**: https://vs-talk.vercel.app/
 
 ## 製品概要
 
@@ -21,6 +21,8 @@ vsTalk は、
 - 一人の発言が長くなりすぎる
 
 - 話題が本筋から脱線する
+
+- 共通認識のズレが起きている
 
 これらに気づいていても、
 
@@ -61,13 +63,13 @@ vsTalk は、
 
 以下のような理由を表示可能
 
-話の繰り返し
+- 話の繰り返し
 
-一人の話が長すぎる
+- 話のターンの独占
 
-話題からの脱線
+- 話題からの脱線
 
-https://github.com/user-attachments/assets/19504d6e-ce57-4310-b81e-20a50bb4d898
+- 共通認識のズレ
 
 vsTalk は、会議を **「我慢の場」** ではなく、ルールのあるゲームのような体験に変えることを目指しています。
 
@@ -77,15 +79,19 @@ vsTalk は、会議を **「我慢の場」** ではなく、ルールのある�
 
 #### フロントエンド
 
-- React
+- React+Vite
 - TypeScript
 - Tailwind css v4
-- Vite
+- lucide-react
 
 #### バックエンド
 
 - Node.js
 - Socket.io
+
+#### DB
+
+- supabase
 
 #### インフラ
 
