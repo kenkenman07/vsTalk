@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import useRoomInfoStore from "../modules/roomInfo.ts/roomInfo.state";
 import { roomService } from "../services/room/room.service";
 import { useCurrentUserStore } from "../modules/auth/current-user.state";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useSocket from "../hooks/useSocket";
 
 const stopReasons = [
@@ -21,9 +21,21 @@ const Meeting = () => {
   const [modalTimer, setModalTimer] = useState(0);
   const roomInfoStore = useRoomInfoStore();
   const currentUserStore = useCurrentUserStore();
-  const { joinRoom, sendMessage, message } = useSocket();
+  const { joinRoom, sendMessage, message, joinFlag } = useSocket();
   const navigate = useNavigate();
   const [now, setNow] = useState(new Date());
+  const { roomId } = useParams();
+  const roomIdNum = Number(roomId);
+
+  useEffect(() => {
+    fetchRoom();
+  }, [roomIdNum, joinFlag]);
+
+  const fetchRoom = async () => {
+    if (!roomIdNum) return;
+
+    await roomService.getRoom(roomIdNum, roomInfoStore.set);
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -64,7 +76,7 @@ const Meeting = () => {
     await roomService.exitRoom(
       roomInfoStore.roomInfo!.id,
       currentUserStore.currentUser?.id,
-      roomInfoStore.set
+      roomInfoStore.set,
     );
 
     navigate("/");

@@ -9,13 +9,13 @@ export const roomService = {
     roomName: string,
     userId: string,
     userName: string,
-    setRoomInfo: (info: RoomInfo) => void
+    setRoomInfo: (info: RoomInfo) => void,
   ) {
     const room = await roomsRepository.create(roomName);
     const roomIdAndUser = await roomMemberRepository.create(
       room.id,
       userId,
-      userName
+      userName,
     );
 
     setRoomInfo({
@@ -39,7 +39,7 @@ export const roomService = {
     createdAt: string,
     userId: string,
     userName: string,
-    setRoomInfo: (info: RoomInfo) => void
+    setRoomInfo: (info: RoomInfo) => void,
   ) {
     await roomMemberRepository.create(roomId, userId, userName);
 
@@ -56,10 +56,25 @@ export const roomService = {
     });
   },
 
+  async getRoom(roomId: number, setRoomInfo: (info: RoomInfo) => void) {
+    const roomData = await roomsRepository.findOne(roomId);
+    const roomIdAndUsers = await roomMemberRepository.find(roomId);
+
+    setRoomInfo({
+      id: roomData.id,
+      name: roomData.name,
+      createdAt: roomData.created_at,
+      members: roomIdAndUsers.map((member) => ({
+        member_id: member.member_id ?? "",
+        member_name: member.member_name ?? "",
+      })),
+    });
+  },
+
   async exitRoom(
     roomId: number,
     userId: string,
-    setRoomInfo: (info: RoomInfo | null) => void
+    setRoomInfo: (info: RoomInfo | null) => void,
   ) {
     await roomMemberRepository.delete(roomId, userId);
     const roomData = await roomMemberRepository.find(roomId);
@@ -79,7 +94,7 @@ export const roomService = {
           room,
           memberCount: count ?? 0,
         };
-      })
+      }),
     );
 
     return roomsWithCount;

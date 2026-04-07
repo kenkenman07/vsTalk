@@ -11,6 +11,7 @@ io.on("connection", (socket) => {
 
   socket.on("joinRoom", (roomId) => {
     socket.join(roomId);
+    io.to(roomId).emit("indicateJoin");
     console.log("user joined room");
   });
 
