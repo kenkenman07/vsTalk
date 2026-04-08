@@ -24,13 +24,13 @@ export default function Create() {
   };
 
   return (
-    <div className="bg-gray-100">
-      <Link to="/" className="fixed left-20 top-10">
+    <div className="min-h-screen bg-gray-100 px-5 py-7 sm:px-6">
+      <Link to="/" className="fixed left-7 top-6 sm:left-20 sm:top-10">
         戻るボタン
       </Link>
 
       <div className="flex min-h-screen items-center justify-center">
-        <div className="flex flex-col items-center border py-40 px-20 rounded-lg gap-55 bg-white shadow-md">
+        <div className="w-full max-w-md flex flex-col items-center border rounded-lg gap-55 bg-white shadow-md">
           <h1 className="text-2xl font-bold">ルーム作成</h1>
 
           <div className="flex flex-col items-center gap-14 ">
