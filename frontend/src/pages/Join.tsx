@@ -30,20 +30,20 @@ const Join = () => {
       room.created_at,
       currentUser.id,
       currentUser.user_metadata.name,
-      roomInfoStore.set
+      roomInfoStore.set,
     );
 
     navigate(`/meeting/${room.id}`);
   };
 
   return (
-    <div className="bg-gray-100">
-      <Link to="/" className="fixed left-20 top-10">
+    <div className="min-h-screen bg-gray-100 px-5 py-7 sm:px-6">
+      <Link to="/" className="fixed left-7 top-6 sm:left-20 sm:top-10">
         戻るボタン
       </Link>
 
       <div className="flex min-h-screen items-center justify-center">
-        <div className="flex flex-col items-center border min-h-48 px-30 rounded-lg gap-14 bg-white shadow-md">
+        <div className="w-full max-w-md flex flex-col items-center border min-h-48 px-4 py-8 sm:px-8 rounded-lg gap-14 bg-white shadow-md">
           <h1 className="text-2xl font-bold">ルーム参加</h1>
 
           <div className="flex flex-col gap-4">
@@ -52,13 +52,13 @@ const Join = () => {
                 return (
                   <div
                     key={i}
-                    className="flex gap-14 items-center bg-gray-500 px-7 py-3 rounded-2xl"
+                    className="flex gap-3 items-center bg-gray-500 px-7 py-3 rounded-2xl"
                   >
                     <div className="flex items-center gap-4">
                       <span className="text-2xl font-bold">
                         {room.room.name}
                       </span>
-                      <span className="text-xl">{room.memberCount}</span>
+                      <span className="text-xl">({room.memberCount})</span>
                     </div>
                     <button
                       onClick={() => handleJoin(room.room)}

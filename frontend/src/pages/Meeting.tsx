@@ -100,7 +100,7 @@ const Meeting = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-scren px-5 py-7 sm:px-6">
       <div className="flex min-h-screen items-center justify-center">
         <div className="fixed top-10 right-20 flex flex-col gap-4">
           メンバー
@@ -111,7 +111,7 @@ const Meeting = () => {
           </ul>
         </div>
 
-        <div className="flex flex-col items-center gap-80">
+        <div className="w-full max-w-lg flex flex-col items-center gap-40">
           <div className="flex flex-col items-center gap-3">
             <div className="text-2xl font-bold">
               {roomInfoStore.roomInfo?.name}
@@ -134,7 +134,7 @@ const Meeting = () => {
           )}
 
           <div className="flex flex-col items-center gap-10">
-            <div className="flex gap-6">
+            <div className="flex gap-4">
               {stopReasons.map((reason, i) => {
                 return (
                   <button
@@ -142,7 +142,7 @@ const Meeting = () => {
                     onClick={() => setSelectedReason(reason)}
                     onMouseEnter={() => setIsHover(i)}
                     onMouseLeave={() => setIsHover(null)}
-                    className={`border rounded-2xl p-6 ${
+                    className={`border rounded-2xl p-2 ${
                       selectedReason == reason &&
                       "bg-red-400 text-white font-bold"
                     } ${isHover == i && "bg-red-300 text-white font-bold"}`}
