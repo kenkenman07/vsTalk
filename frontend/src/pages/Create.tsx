@@ -51,9 +51,9 @@ export default function Create() {
 
             <button
               onClick={handleCreateRoom}
-              className="rounded-lg border bg-red-500 font-medium p-5"
+              className="rounded-lg border bg-red-500 font-medium py-5 px-7"
             >
-              作成ボタン
+              作成
             </button>
           </div>
         </div>

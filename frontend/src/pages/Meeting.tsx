@@ -1,4 +1,10 @@
-import { Hand } from "lucide-react";
+import {
+  ArrowRightLeft,
+  Hand,
+  RotateCcw,
+  Speech,
+  TrainTrack,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import useRoomInfoStore from "../modules/roomInfo.ts/roomInfo.state";
 import { roomService } from "../services/room/room.service";
@@ -7,10 +13,22 @@ import { useNavigate, useParams } from "react-router-dom";
 import useSocket from "../hooks/useSocket";
 
 const stopReasons = [
-  "話の繰り返し",
-  "話の脱線",
-  "共通認識のズレ",
-  "話のターンの独占",
+  {
+    label: "話の繰り返し",
+    icon: <RotateCcw className="w-9 h-9 sm:w-15 sm:h-15" />,
+  },
+  {
+    label: "話の脱線",
+    icon: <TrainTrack className="w-9 h-9 sm:w-15 sm:h-15" />,
+  },
+  {
+    label: "共通認識のズレ",
+    icon: <ArrowRightLeft className="w-9 h-9 sm:w-15 sm:h-15" />,
+  },
+  {
+    label: "話のターンの独占",
+    icon: <Speech className="w-9 h-9 sm:w-15 sm:h-15" />,
+  },
 ];
 
 const Meeting = () => {
@@ -136,20 +154,21 @@ const Meeting = () => {
           )}
 
           <div className="flex flex-col items-center gap-10">
-            <div className="flex gap-4">
+            <div className="flex gap-5 sm:gap-10">
               {stopReasons.map((reason, i) => {
                 return (
                   <button
                     key={i}
-                    onClick={() => setSelectedReason(reason)}
+                    onClick={() => setSelectedReason(reason.label)}
                     onMouseEnter={() => setIsHover(i)}
                     onMouseLeave={() => setIsHover(null)}
-                    className={`border rounded-2xl p-2 ${
-                      selectedReason == reason &&
+                    className={`flex flex-col items-center rounded-2xl p-1 sm:p-3 gap-3 ${
+                      selectedReason == reason.label &&
                       "bg-red-400 text-white font-bold"
                     } ${isHover == i && "bg-red-300 text-white font-bold"}`}
                   >
-                    {reason}
+                    <div>{reason.icon}</div>
+                    <div className="text-[11px]">{reason.label}</div>
                   </button>
                 );
               })}
@@ -163,7 +182,7 @@ const Meeting = () => {
       </div>
       <button
         onClick={handleExit}
-        className="z-10 fixed bottom-20 right-20 bg-red-500 font-medium rounded-2xl p-4"
+        className="z-10 fixed bottom-10 right-10 sm:bottom-20 sm:right-20 bg-red-500 font-medium rounded-2xl p-4"
       >
         退出
       </button>
