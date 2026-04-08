@@ -30,7 +30,7 @@ export default function Create() {
       </Link>
 
       <div className="flex min-h-screen items-center justify-center">
-        <div className="w-full max-w-md flex flex-col items-center border rounded-lg gap-55 bg-white shadow-md">
+        <div className="w-full max-w-md flex flex-col items-center border rounded-lg gap-40 p-6 bg-white shadow-md">
           <h1 className="text-2xl font-bold">ルーム作成</h1>
 
           <div className="flex flex-col items-center gap-14 ">
