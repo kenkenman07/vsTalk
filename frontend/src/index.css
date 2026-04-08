@@ -1,7 +1,1 @@
-@import 'tailwindcss';
-
-@layer base {
-    .font-digital {
-        font-family: "Bitcount Single";
-    }
-}
+@import "tailwindcss";

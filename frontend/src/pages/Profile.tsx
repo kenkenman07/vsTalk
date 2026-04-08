@@ -17,7 +17,7 @@ export default function Profile() {
   const user = currentUserStore.currentUser;
 
   return (
-    <div className="min-h-screen bg-gray-100 px-5 py-7 sm:px-6">
+    <div className="min-h-screen bg-gray-100 px-5 sm:px-6">
       <Link
         to="/"
         className="fixed left-7 top-6 sm:left-20 sm:top-10 flex gap-2"

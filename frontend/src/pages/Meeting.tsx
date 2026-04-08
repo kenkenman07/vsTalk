@@ -100,7 +100,7 @@ const Meeting = () => {
   };
 
   return (
-    <div className="min-h-scren px-5 py-7 sm:px-6">
+    <div className="min-h-scren px-5 sm:px-6">
       <div className="flex min-h-screen items-center justify-center">
         <div className="fixed top-10 right-20 flex flex-col gap-4">
           メンバー
