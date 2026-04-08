@@ -123,9 +123,11 @@ const Meeting = () => {
           </div>
 
           {modalMessage ? (
-            <div className="fixed inset-0 flex items-center justify-center">
-              <div className="flex flex-col gap-3 items-center px-40 py-20 bg-yellow-300 shadow-md ">
-                <div className="text-4xl font-bold">{modalMessage}</div>
+            <div className="fixed inset-0 flex items-center justify-center bg-black/30 p-4">
+              <div className="w-full max-w-md flex flex-col gap-3 py-4 sm:py-20 items-center bg-yellow-300 shadow-md ">
+                <div className="text-2xl sm:text-4xl font-bold">
+                  {modalMessage}
+                </div>
                 <div>{modalTimer}</div>
               </div>
             </div>
