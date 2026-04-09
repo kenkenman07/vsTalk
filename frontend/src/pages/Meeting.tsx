@@ -4,6 +4,8 @@ import {
   RotateCcw,
   Speech,
   TrainTrack,
+  Users,
+  X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import useRoomInfoStore from "../modules/roomInfo.ts/roomInfo.state";
@@ -36,6 +38,7 @@ const Meeting = () => {
   const [isHover, setIsHover] = useState<number | null>(null);
 
   const [modalMessage, setModalMessage] = useState("");
+  const [open, setOpen] = useState(false);
   const [modalTimer, setModalTimer] = useState(0);
   const roomInfoStore = useRoomInfoStore();
   const currentUserStore = useCurrentUserStore();
@@ -120,13 +123,32 @@ const Meeting = () => {
   return (
     <div className="min-h-scren px-5 sm:px-6">
       <div className="flex min-h-screen items-center justify-center">
-        <div className="fixed top-10 right-20 flex flex-col gap-4">
-          メンバー
-          <ul className="">
-            {members?.map((member) => {
-              return <li key={member.member_id}>{member.member_name}</li>;
-            })}
-          </ul>
+        <div className="fixed top-10 right-10 sm:top-20 sm:right-20 flex flex-col">
+          <div className="relative flex flex-col items-center">
+            <button onClick={() => setOpen((prev) => !prev)}>
+              <Users size={32} />
+            </button>
+
+            {open ? (
+              <div className="absolute w-24 h-48 sm:w-32 sm:h-72 rounded-2xl text-white gap-2 bg-gray-700 flex flex-col items-center">
+                <button onClick={() => setOpen(false)}>
+                  <X />
+                </button>
+
+                <div className="flex-1 overflow-y-auto">
+                  <ul className="">
+                    {members?.map((member) => {
+                      return (
+                        <li key={member.member_id}>{member.member_name}</li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
 
         <div className="w-full max-w-lg flex flex-col items-center gap-40">
