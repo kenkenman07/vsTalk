@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import type { Room } from "../modules/rooms/rooms.entity";
 import { roomService } from "../services/room/room.service";
 import { useCurrentUserStore } from "../modules/auth/current-user.state";
 import useRoomInfoStore from "../modules/roomInfo.ts/roomInfo.state";
-import { ArrowLeftToLine } from "lucide-react";
+import ReturnButton from "../components/ReturnButton";
 
 export type RoomWithCount = { room: Room; memberCount: number };
 
@@ -39,13 +39,7 @@ const Join = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 px-5 sm:px-6">
-      <Link
-        to="/"
-        className="fixed left-7 top-6 sm:left-20 sm:top-10 flex gap-2"
-      >
-        <ArrowLeftToLine />
-        戻る
-      </Link>
+      <ReturnButton />
 
       <div className="flex min-h-screen items-center justify-center">
         <div className="w-full max-w-md flex flex-col items-center border min-h-48 px-4 py-8 sm:px-8 rounded-lg gap-14 bg-white shadow-md">

@@ -1,9 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useCurrentUserStore } from "../modules/auth/current-user.state";
 import { roomService } from "../services/room/room.service";
 import { useState } from "react";
 import useRoomInfoStore from "../modules/roomInfo.ts/roomInfo.state";
-import { ArrowLeftToLine } from "lucide-react";
+import ReturnButton from "../components/ReturnButton";
 
 export default function Create() {
   const navigate = useNavigate();
@@ -26,13 +26,7 @@ export default function Create() {
 
   return (
     <div className="min-h-screen bg-gray-100 px-5 sm:px-6">
-      <Link
-        to="/"
-        className="fixed left-7 top-6 sm:left-20 sm:top-10 flex gap-2"
-      >
-        <ArrowLeftToLine />
-        戻る
-      </Link>
+      <ReturnButton />
 
       <div className="flex min-h-screen items-center justify-center">
         <div className="w-full max-w-md flex flex-col items-center border rounded-lg gap-40 p-6 bg-white shadow-md">

@@ -1,7 +1,8 @@
 import { useCurrentUserStore } from "../modules/auth/current-user.state";
-import { ArrowLeftToLine, LogOut } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { authRepository } from "../modules/auth/auth.repository";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import ReturnButton from "../components/ReturnButton";
 
 export default function Profile() {
   const currentUserStore = useCurrentUserStore();
@@ -18,13 +19,7 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen bg-gray-100 px-5 sm:px-6">
-      <Link
-        to="/"
-        className="fixed left-7 top-6 sm:left-20 sm:top-10 flex gap-2"
-      >
-        <ArrowLeftToLine />
-        戻る
-      </Link>
+      <ReturnButton />
 
       <div className="flex min-h-screen items-center justify-center">
         <div className="w-full max-w-sm flex flex-col items-center gap-20 bg-white p-4 sm:py-12 rounded-lg shadow-md">

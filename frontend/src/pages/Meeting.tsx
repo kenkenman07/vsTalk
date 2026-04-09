@@ -1,37 +1,13 @@
-import {
-  ArrowRightLeft,
-  Hand,
-  RotateCcw,
-  Speech,
-  TrainTrack,
-  Users,
-  X,
-} from "lucide-react";
+import { Hand, Users, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import useRoomInfoStore from "../modules/roomInfo.ts/roomInfo.state";
 import { roomService } from "../services/room/room.service";
 import { useCurrentUserStore } from "../modules/auth/current-user.state";
 import { useNavigate, useParams } from "react-router-dom";
 import useSocket from "../hooks/useSocket";
-
-const stopReasons = [
-  {
-    label: "話の繰り返し",
-    icon: <RotateCcw className="w-9 h-9 sm:w-15 sm:h-15" />,
-  },
-  {
-    label: "話の脱線",
-    icon: <TrainTrack className="w-9 h-9 sm:w-15 sm:h-15" />,
-  },
-  {
-    label: "共通認識のズレ",
-    icon: <ArrowRightLeft className="w-9 h-9 sm:w-15 sm:h-15" />,
-  },
-  {
-    label: "話のターンの独占",
-    icon: <Speech className="w-9 h-9 sm:w-15 sm:h-15" />,
-  },
-];
+import useElapsedTimer from "../hooks/useElapsedTimer";
+import Modal from "../components/Meeting/Modal";
+import CauseOption from "../components/Meeting/CauseOption";
 
 const Meeting = () => {
   const [selectedReason, setSelectedReason] = useState("");
@@ -44,7 +20,7 @@ const Meeting = () => {
   const currentUserStore = useCurrentUserStore();
   const { joinRoom, sendMessage, sendExit, message, joinFlag } = useSocket();
   const navigate = useNavigate();
-  const [now, setNow] = useState(new Date());
+  const { minutes, seconds } = useElapsedTimer();
   const { roomId } = useParams();
   const roomIdNum = Number(roomId);
 
@@ -57,14 +33,6 @@ const Meeting = () => {
 
     await roomService.getRoom(roomIdNum, roomInfoStore.set);
   };
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setNow(new Date());
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
 
   useEffect(() => {
     if (!message) return;
@@ -104,15 +72,6 @@ const Meeting = () => {
 
     navigate("/");
   };
-
-  if (!roomInfoStore.roomInfo) return <div></div>;
-
-  const start = new Date(roomInfoStore.roomInfo?.createdAt);
-  const elapsedMs = Math.max(0, now.getTime() - start.getTime());
-
-  const totalSec = Math.floor(elapsedMs / 1000);
-  const minutes = Math.floor(totalSec / 60);
-  const seconds = totalSec % 60;
 
   const stop = () => {
     if (!roomInfoStore.roomInfo) return;
@@ -164,37 +123,19 @@ const Meeting = () => {
 
           {modalMessage ? (
             <div className="fixed inset-0 flex items-center justify-center bg-black/30 p-4">
-              <div className="w-full max-w-md flex flex-col gap-3 py-4 sm:py-20 items-center bg-yellow-300 shadow-md ">
-                <div className="text-2xl sm:text-4xl font-bold">
-                  {modalMessage}
-                </div>
-                <div>{modalTimer}</div>
-              </div>
+              <Modal modalMessage={modalMessage} modalTimer={modalTimer} />
             </div>
           ) : (
             <></>
           )}
 
           <div className="flex flex-col items-center gap-10">
-            <div className="flex gap-5 sm:gap-10">
-              {stopReasons.map((reason, i) => {
-                return (
-                  <button
-                    key={i}
-                    onClick={() => setSelectedReason(reason.label)}
-                    onMouseEnter={() => setIsHover(i)}
-                    onMouseLeave={() => setIsHover(null)}
-                    className={`flex flex-col items-center rounded-2xl p-1 sm:p-3 gap-3 ${
-                      selectedReason == reason.label &&
-                      "bg-red-400 text-white font-bold"
-                    } ${isHover == i && "bg-red-300 text-white font-bold"}`}
-                  >
-                    <div>{reason.icon}</div>
-                    <div className="text-[11px]">{reason.label}</div>
-                  </button>
-                );
-              })}
-            </div>
+            <CauseOption
+              setSelectedReason={setSelectedReason}
+              selectedReason={selectedReason}
+              setIsHover={setIsHover}
+              isHover={isHover}
+            />
 
             <button onClick={stop} className="p-7 border rounded-full">
               <Hand />
