@@ -7,8 +7,8 @@ export default function Signin() {
   const currentUserStore = useCurrentUserStore();
 
   useEffect(() => {
-    authService.checkUserSignin(currentUserStore.set);
-  });
+    authService.initialSignin(currentUserStore.set);
+  }, []);
 
   if (currentUserStore.currentUser != null) return <Navigate replace to="/" />;
 

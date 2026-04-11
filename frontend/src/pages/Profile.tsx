@@ -4,6 +4,7 @@ import { authRepository } from "../modules/auth/auth.repository";
 import { useNavigate } from "react-router-dom";
 import ReturnButton from "../components/ReturnButton";
 import { useState } from "react";
+import { profileService } from "../services/profile/profile.service";
 
 export default function Profile() {
   const [open, setOpen] = useState(false);
@@ -18,9 +19,19 @@ export default function Profile() {
     navigate("/signin");
   };
 
-  const handleChangeName = async () => {};
+  const handleChangeName = async () => {
+    if (!currentUserStore.currentUser) return;
+    await profileService.update(
+      currentUserStore.currentUser?.id,
+      newName,
+      currentUserStore.currentUser,
+      currentUserStore.set,
+    );
 
-  if (!currentUserStore) return;
+    setOpen(false);
+  };
+
+  if (!currentUserStore) return <></>;
   const user = currentUserStore.currentUser;
 
   return (
@@ -59,7 +70,7 @@ export default function Profile() {
             ) : (
               <div className="flex flex-col gap-5">
                 <div className="flex gap-2 items-center text-xl font-medium">
-                  {user?.user_metadata.name}
+                  {user?.displayName}
                   <button onClick={() => setOpen(true)}>
                     <Pencil size={22} />
                   </button>

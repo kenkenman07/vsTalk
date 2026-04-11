@@ -15,4 +15,14 @@ export const profileRepository = {
 
     return data;
   },
+  async find(userId: string) {
+    const { data, error } = await supabase
+      .from("profile")
+      .select()
+      .eq("user_id", userId)
+      .maybeSingle();
+
+    if (error != null) throw new Error(error.message);
+    return data;
+  },
 };

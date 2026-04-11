@@ -60,6 +60,12 @@
   - メンバー一覧
   - 経過時間表示
 
+- プロフィールページ(/profile)
+  - 戻るボタン
+  - 名前変更ボタン
+    - 変更名入力フォーム
+  - ログアウトボタン
+
 ## ロジック
 
 ### services
@@ -75,10 +81,6 @@
 - ルーム参加
 - ルーム退出
 - ルーム一覧取得
-
-### hooks
-
-- ソケット通信
 
 ### auth
 
@@ -123,6 +125,14 @@
 
 - roomsから全room取得
 - room_memberで、各roomの人数を取得
+
+#### プロフィール(名前)変更
+
+- profileを更新
+  - 新profileを取得
+
+- currentUser.stateにセット
+  - {...currentUser, displayName: profile.displayname)
 
 ### hooks
 
