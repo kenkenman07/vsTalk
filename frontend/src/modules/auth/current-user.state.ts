@@ -1,7 +1,7 @@
-import type { User } from "@supabase/supabase-js";
 import { atom, useAtom } from "jotai";
+import type { CurrentUser } from "./current-user.entity";
 
-const currentUserAtom = atom<User>();
+const currentUserAtom = atom<CurrentUser>();
 
 export const useCurrentUserStore = () => {
   const [currentUser, setCurrentUser] = useAtom(currentUserAtom);

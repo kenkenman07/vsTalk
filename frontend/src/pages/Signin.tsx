@@ -1,14 +1,14 @@
-import { useEffect } from "react";
 import { useCurrentUserStore } from "../modules/auth/current-user.state";
 import { Navigate } from "react-router-dom";
 import { authService } from "../services/auth/auth.service";
+import { useEffect } from "react";
 
 export default function Signin() {
   const currentUserStore = useCurrentUserStore();
 
   useEffect(() => {
-    authService.checkUserSignin();
-  }, []);
+    authService.checkUserSignin(currentUserStore.set);
+  });
 
   if (currentUserStore.currentUser != null) return <Navigate replace to="/" />;
 
@@ -18,7 +18,7 @@ export default function Signin() {
         <h1 className="text-3xl font-bold">vsTalk</h1>
 
         <button
-          onClick={authService.signInGoogle}
+          onClick={() => authService.signInGoogle()}
           className="rounded-lg bg-blue-500 px-6 py-3 text-white font-medium"
         >
           Googleでログイン

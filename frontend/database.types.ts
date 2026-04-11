@@ -14,19 +14,34 @@ export type Database = {
   }
   public: {
     Tables: {
+      profile: {
+        Row: {
+          display_name: string
+          user_id: string
+        }
+        Insert: {
+          display_name: string
+          user_id?: string
+        }
+        Update: {
+          display_name?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       room_member: {
         Row: {
-          member_id: string | null
+          member_id: string
           member_name: string | null
           room_id: number
         }
         Insert: {
-          member_id?: string | null
+          member_id?: string
           member_name?: string | null
           room_id?: number
         }
         Update: {
-          member_id?: string | null
+          member_id?: string
           member_name?: string | null
           room_id?: number
         }
@@ -34,7 +49,7 @@ export type Database = {
           {
             foreignKeyName: "room_member_room_id_fkey"
             columns: ["room_id"]
-            isOneToOne: true
+            isOneToOne: false
             referencedRelation: "rooms"
             referencedColumns: ["id"]
           },

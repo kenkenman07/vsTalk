@@ -7,8 +7,8 @@ import Signin from "./pages/Signin";
 import Join from "./pages/Join";
 import Profile from "./pages/Profile";
 import { useEffect, useState } from "react";
+import { authService } from "./services/auth/auth.service";
 import { useCurrentUserStore } from "./modules/auth/current-user.state";
-import { authRepository } from "./modules/auth/auth.repository";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,8 +19,8 @@ function App() {
   }, []);
 
   const getSession = async () => {
-    const currentUser = await authRepository.getCurrentUser();
-    currentUserStore.set(currentUser);
+    await authService.checkUserSignin(currentUserStore.set);
+
     setIsLoading(false);
   };
 
