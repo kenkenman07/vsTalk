@@ -1,14 +1,9 @@
 import { useCurrentUserStore } from "../modules/auth/current-user.state";
 import { Navigate } from "react-router-dom";
 import { authService } from "../services/auth/auth.service";
-import { useEffect } from "react";
 
 export default function Signin() {
   const currentUserStore = useCurrentUserStore();
-
-  useEffect(() => {
-    authService.initialSignin(currentUserStore.set);
-  }, []);
 
   if (currentUserStore.currentUser != null) return <Navigate replace to="/" />;
 

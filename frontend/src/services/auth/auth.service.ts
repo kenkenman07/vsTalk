@@ -17,22 +17,16 @@ export const authService = {
           ...currentUser,
           displayName: profile.display_name,
         });
+      } else {
+        const newProfile = await profileRepository.createAndUpdate(
+          currentUser?.id,
+          currentUser.user_metadata.name,
+        );
+        set({
+          ...currentUser,
+          displayName: newProfile.display_name,
+        });
       }
-    }
-  },
-
-  async initialSignin(set: (user: CurrentUser) => void) {
-    const currentUser = await authRepository.getCurrentUser();
-    if (currentUser != null) {
-      const profile = await profileRepository.createAndUpdate(
-        currentUser?.id,
-        currentUser.user_metadata.name,
-      );
-
-      set({
-        ...currentUser,
-        displayName: profile.display_name,
-      });
     }
   },
 };
