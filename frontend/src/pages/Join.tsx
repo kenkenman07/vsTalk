@@ -30,7 +30,7 @@ const Join = () => {
       room.name,
       room.created_at,
       currentUser.id,
-      currentUser.user_metadata.name,
+      currentUser.displayName,
       roomInfoStore.set,
     );
 

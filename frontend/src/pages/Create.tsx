@@ -17,7 +17,7 @@ export default function Create() {
     const roomId = await roomService.createRoom(
       roomName,
       currentUser.id,
-      currentUser.user_metadata.name,
+      currentUser.displayName,
       roomInfoStore.set,
     );
 
