@@ -9,6 +9,7 @@ vsTalk は、
 ## リンク
 
 - **アプリ URL**: https://vs-talk.vercel.app/
+- **デモ動画**： https://www.youtube.com/watch?v=JXIKyg7eKTE
 
 ## 製品概要
 
