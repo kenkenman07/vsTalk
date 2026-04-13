@@ -100,3 +100,21 @@ vsTalk は、会議を **「我慢の場」** ではなく、ルールのある�
 
 - Vercel (フロントエンド)
 - Render (Socketサーバー)
+
+## ローカルでの起動方法
+
+#### フロントエンド
+
+```
+cd frontend
+npm install
+npm run dev
+```
+
+#### バックエンド
+
+```
+cd backend
+docker build -t vstalk .
+docker run -p 3000:3000 vstalk
+```
