@@ -1,4 +1,4 @@
-# [vsTalk]() STOP!! の背徳感を味わおう
+# [vsTalk]()
 
 ![README_header](./images/vsTalk.png)
 
@@ -13,8 +13,9 @@ vsTalk は、
 
 ## 製品概要
 
-### 背景(製品開発のきっかけ、課題等）
+### 背景 (製品開発のきっかけ、課題等)
 
+**STOP!! の背徳感を味わおう**  
 会議やディスカッションでは、次のような問題がよく発生します。
 
 - 話の繰り返しが起きる
@@ -82,20 +83,20 @@ vsTalk は、会議を **「我慢の場」** ではなく、ルールのある�
 
 #### フロントエンド
 
-- React+Vite
-- TypeScript
-- Tailwind css v4
-- lucide-react
+- React (Vite) / TypeScript
+- Tailwind css v4 (UI設計・レスポンシブ対応)
+- lucide-react (アイコン)
+- Socket.io(リアルタイム通信)
 
 #### バックエンド
 
-- Node.js
-- Socket.io
+- Node.js + Socket.io (リアルタイム通信)
 
 #### DB
 
-- supabase
+- Supabase (認証・DB・RLS設計)
 
-#### インフラ
+#### デプロイ
 
-- vercel
+- Vercel (フロントエンド)
+- Render (Socketサーバー)
