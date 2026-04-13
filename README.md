@@ -48,6 +48,8 @@ vsTalk は、
 
 ### 特長
 
+<img width="1833" height="1023" alt="image" src="https://github.com/user-attachments/assets/97bfe454-76dc-4d7b-8406-ea6bcbc09e09" />
+
 #### 1. 匿名ストップ機能
 
 誰が止めたかは分からない
