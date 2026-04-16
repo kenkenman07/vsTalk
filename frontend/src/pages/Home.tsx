@@ -8,12 +8,12 @@ export default function Home() {
     <div>
       <Link
         to="/profile"
-        className="fixed top-8 right-8 rounded-full border p-6"
+        className="absolute top-8 right-8 rounded-full border p-6"
       >
         <User />
       </Link>
 
-      <div className="flex flex-col items-center justify-center min-h-screen gap-30">
+      <div className="flex flex-col items-center justify-center min-h-screen gap-20 sm:gap-30">
         <h1 className="text-8xl font-bold">vsTalk</h1>
 
         <div className="flex flex-col gap-10 text-2xl font-medium">

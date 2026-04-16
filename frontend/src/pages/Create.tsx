@@ -18,7 +18,7 @@ export default function Create() {
       roomName,
       currentUser.id,
       currentUser.displayName,
-      roomInfoStore.set,
+      roomInfoStore.set
     );
 
     navigate(`/meeting/${roomId}`);
