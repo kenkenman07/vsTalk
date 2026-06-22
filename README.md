@@ -49,21 +49,33 @@ vsTalk は、
 
 ### 特長
 
-<img width="1833" height="1023" alt="image" src="https://github.com/user-attachments/assets/97bfe454-76dc-4d7b-8406-ea6bcbc09e09" />
 
 #### 1. 匿名ストップ機能
+
+- 理由の選択
+<img width="733" height="420" alt="image" src="https://github.com/user-attachments/assets/7bec92d2-6fdc-4839-8ece-b47edb5ee49b" />
+
+
 
 誰が止めたかは分からない
 
 発言者を特定しないため、気兼ねなく使える
 
+- ストップボタンの押下
+<img width="763" height="436" alt="image" src="https://github.com/user-attachments/assets/6d5ea139-44f2-4912-a77b-11e544d13179" />
+
+
 #### 2. 全員通知
+
+<img width="1833" height="1023" alt="image" src="https://github.com/user-attachments/assets/97bfe454-76dc-4d7b-8406-ea6bcbc09e09" />
+
 
 ストップボタンが押されると、参加者全員に即時通知
 
 「今、話を整理すべきタイミング」であることを共有
 
 #### 3. 原因の可視化
+
 
 以下のような理由を表示可能
 
