@@ -16,6 +16,7 @@
   - 画面から受け取った情報をもとに、必要な処理を行います
 
 ## データフロー
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/6cb5a6af-d5e6-40b7-90f4-644be3b02a85" />
 
 
 
