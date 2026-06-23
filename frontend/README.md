@@ -151,7 +151,7 @@
   - 新profileを取得
 
 - currentUser.stateにセット
-  - {...currentUser, displayName: profile.displayname)
+  - {...currentUser, displayName: profile.displayname}
 
 ### hooks
 
@@ -190,8 +190,13 @@
 
 #### room_member
 
-- roomId (↔rooms:id)
+- room_id (↔rooms:id)
 - member_id(↔auth:id)
+
+#### profile
+
+- user_id
+- display_name
 
 ### jotai
 
